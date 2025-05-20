@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
-#include <algorithm> // for sort()
+#include <algorithm>
+#include <iomanip>
 
 using namespace std;
 
@@ -8,47 +9,44 @@ struct Process {
     int id;
     int arrivalTime;
     int burstTime;
+    int finishTime;
 };
 
-// Function to compute FCFS scheduling
 void runFCFS(vector<Process>& processes) {
-    // Sort processes by arrival time (FCFS order)
     sort(processes.begin(), processes.end(), [](const Process& a, const Process& b) {
         return a.arrivalTime < b.arrivalTime;
     });
 
     int currentTime = 0;
-    float totalWaitingTime = 0;
-    float totalTurnaroundTime = 0;
-
     cout << "\nGantt Chart:\n";
     cout << "--------------------------------------------------\n";
 
-    for (const auto& p : processes) {
+    for (auto& p : processes) {
         if (currentTime < p.arrivalTime) {
-            currentTime = p.arrivalTime; // Handle idle time
+            cout << "| IDLE (" << currentTime << "-" << p.arrivalTime << ") ";
+            currentTime = p.arrivalTime;
         }
-
-        int waitingTime = currentTime - p.arrivalTime;
-        int turnaroundTime = waitingTime + p.burstTime;
-
-        // Update totals
-        totalWaitingTime += waitingTime;
-        totalTurnaroundTime += turnaroundTime;
-
-        // Print process execution
         cout << "| P" << p.id << " (" << currentTime << "-" << currentTime + p.burstTime << ") ";
+        p.finishTime = currentTime + p.burstTime;
         currentTime += p.burstTime;
     }
-
     cout << "|\n--------------------------------------------------\n";
 
-    // Calculate averages
-    float avgWaitingTime = totalWaitingTime / processes.size();
-    float avgTurnaroundTime = totalTurnaroundTime / processes.size();
+    // Calculate metrics
+    float totalWaiting = 0, totalTurnaround = 0;
+    cout << "\nProcess\tArrival\tBurst\tFinish\tWaiting\tTurnaround\n";
+    cout << "--------------------------------------------------\n";
+    for (const auto& p : processes) {
+        int waiting = p.finishTime - p.arrivalTime - p.burstTime;
+        int turnaround = p.finishTime - p.arrivalTime;
+        totalWaiting += waiting;
+        totalTurnaround += turnaround;
+        cout << "P" << p.id << "\t" << p.arrivalTime << "\t" << p.burstTime << "\t" 
+             << p.finishTime << "\t" << waiting << "\t" << turnaround << endl;
+    }
 
-    cout << "\nAverage Waiting Time: " << avgWaitingTime << endl;
-    cout << "Average Turnaround Time: " << avgTurnaroundTime << endl;
+    cout << "\nAverage Waiting Time: " << totalWaiting / processes.size() << endl;
+    cout << "Average Turnaround Time: " << totalTurnaround / processes.size() << endl;
 }
 
 int main() {
@@ -57,8 +55,6 @@ int main() {
     cin >> n;
 
     vector<Process> processes(n);
-
-    // Input process details
     for (int i = 0; i < n; i++) {
         processes[i].id = i + 1;
         cout << "Enter Arrival Time for P" << i+1 << ": ";
@@ -67,6 +63,6 @@ int main() {
         cin >> processes[i].burstTime;
     }
 
-    runFCFS(processes); // Execute FCFS
+    runFCFS(processes);
     return 0;
 }
