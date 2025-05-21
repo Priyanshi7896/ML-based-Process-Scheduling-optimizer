@@ -1,0 +1,29 @@
+{
+  "num_processes": 3,
+  "processes": [
+    {
+      "pid": 1,
+      "arrival_time": 16,
+      "burst_time": 5,
+      "priority": 6
+    },
+    {
+      "pid": 0,
+      "arrival_time": 36,
+      "burst_time": 4,
+      "priority": 7
+    },
+    {
+      "pid": 2,
+      "arrival_time": 84,
+      "burst_time": 6,
+      "priority": 8
+    }
+  ],
+  "time_quantum": 7,
+  "stats": {
+    "avg_burst": 5,
+    "arrival_std": 34.947579792216416,
+    "burst_skew": 0.0
+  }
+}

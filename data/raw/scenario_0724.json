@@ -1,0 +1,41 @@
+{
+  "num_processes": 5,
+  "processes": [
+    {
+      "pid": 2,
+      "arrival_time": 13,
+      "burst_time": 1,
+      "priority": 2
+    },
+    {
+      "pid": 3,
+      "arrival_time": 13,
+      "burst_time": 7,
+      "priority": 9
+    },
+    {
+      "pid": 4,
+      "arrival_time": 13,
+      "burst_time": 4,
+      "priority": 2
+    },
+    {
+      "pid": 1,
+      "arrival_time": 21,
+      "burst_time": 21,
+      "priority": 7
+    },
+    {
+      "pid": 0,
+      "arrival_time": 26,
+      "burst_time": 22,
+      "priority": 3
+    }
+  ],
+  "time_quantum": 5,
+  "stats": {
+    "avg_burst": 11,
+    "arrival_std": 6.016643582596529,
+    "burst_skew": 0.27244322741705346
+  }
+}

@@ -1,0 +1,119 @@
+{
+  "num_processes": 18,
+  "processes": [
+    {
+      "pid": 12,
+      "arrival_time": 4,
+      "burst_time": 20,
+      "priority": 5
+    },
+    {
+      "pid": 10,
+      "arrival_time": 12,
+      "burst_time": 3,
+      "priority": 3
+    },
+    {
+      "pid": 13,
+      "arrival_time": 12,
+      "burst_time": 27,
+      "priority": 5
+    },
+    {
+      "pid": 8,
+      "arrival_time": 15,
+      "burst_time": 14,
+      "priority": 3
+    },
+    {
+      "pid": 4,
+      "arrival_time": 24,
+      "burst_time": 2,
+      "priority": 4
+    },
+    {
+      "pid": 11,
+      "arrival_time": 25,
+      "burst_time": 8,
+      "priority": 1
+    },
+    {
+      "pid": 15,
+      "arrival_time": 30,
+      "burst_time": 2,
+      "priority": 4
+    },
+    {
+      "pid": 5,
+      "arrival_time": 33,
+      "burst_time": 8,
+      "priority": 5
+    },
+    {
+      "pid": 9,
+      "arrival_time": 40,
+      "burst_time": 4,
+      "priority": 3
+    },
+    {
+      "pid": 1,
+      "arrival_time": 44,
+      "burst_time": 8,
+      "priority": 7
+    },
+    {
+      "pid": 3,
+      "arrival_time": 45,
+      "burst_time": 19,
+      "priority": 7
+    },
+    {
+      "pid": 16,
+      "arrival_time": 47,
+      "burst_time": 5,
+      "priority": 8
+    },
+    {
+      "pid": 7,
+      "arrival_time": 49,
+      "burst_time": 18,
+      "priority": 5
+    },
+    {
+      "pid": 17,
+      "arrival_time": 51,
+      "burst_time": 10,
+      "priority": 5
+    },
+    {
+      "pid": 14,
+      "arrival_time": 64,
+      "burst_time": 7,
+      "priority": 6
+    },
+    {
+      "pid": 0,
+      "arrival_time": 79,
+      "burst_time": 2,
+      "priority": 8
+    },
+    {
+      "pid": 6,
+      "arrival_time": 85,
+      "burst_time": 7,
+      "priority": 6
+    },
+    {
+      "pid": 2,
+      "arrival_time": 86,
+      "burst_time": 7,
+      "priority": 6
+    }
+  ],
+  "time_quantum": 14,
+  "stats": {
+    "avg_burst": 9.5,
+    "arrival_std": 24.98738243685704,
+    "burst_skew": 1.0005930878166667
+  }
+}

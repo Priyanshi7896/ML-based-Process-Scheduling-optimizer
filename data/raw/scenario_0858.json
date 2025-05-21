@@ -1,0 +1,65 @@
+{
+  "num_processes": 9,
+  "processes": [
+    {
+      "pid": 8,
+      "arrival_time": 1,
+      "burst_time": 9,
+      "priority": 6
+    },
+    {
+      "pid": 4,
+      "arrival_time": 8,
+      "burst_time": 3,
+      "priority": 4
+    },
+    {
+      "pid": 3,
+      "arrival_time": 9,
+      "burst_time": 5,
+      "priority": 6
+    },
+    {
+      "pid": 1,
+      "arrival_time": 34,
+      "burst_time": 1,
+      "priority": 8
+    },
+    {
+      "pid": 2,
+      "arrival_time": 34,
+      "burst_time": 20,
+      "priority": 4
+    },
+    {
+      "pid": 7,
+      "arrival_time": 63,
+      "burst_time": 47,
+      "priority": 3
+    },
+    {
+      "pid": 5,
+      "arrival_time": 73,
+      "burst_time": 8,
+      "priority": 5
+    },
+    {
+      "pid": 0,
+      "arrival_time": 86,
+      "burst_time": 12,
+      "priority": 4
+    },
+    {
+      "pid": 6,
+      "arrival_time": 86,
+      "burst_time": 4,
+      "priority": 7
+    }
+  ],
+  "time_quantum": 16,
+  "stats": {
+    "avg_burst": 12.11111111111111,
+    "arrival_std": 34.0946395265362,
+    "burst_skew": 1.8179496878831256
+  }
+}
