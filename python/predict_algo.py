@@ -22,7 +22,7 @@ class SchedulerPredictor:
         return self.model.predict(features)[0]
 
 if __name__ == "__main__":
-    # Example usage
+    # Example 
     predictor = SchedulerPredictor()
     test_input = {
         "num_processes": 5,
