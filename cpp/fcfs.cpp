@@ -1,7 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "json.hpp"  // Instead of #include <nlohmann/json.hpp>
+#include "json.hpp"  
 
 using json = nlohmann::json;
 using namespace std;
@@ -17,11 +17,11 @@ struct Process {
 };
 
 int main() {
-    // Read JSON input
+    // Reading JSON input
     json input;
     cin >> input;
 
-    // Parse processes
+    // Parsing processes
     vector<Process> processes;
     for (auto& p : input["processes"]) {
         processes.push_back({
@@ -29,12 +29,12 @@ int main() {
         });
     }
 
-    // Sort by arrival time (FCFS)
+    // Sorting by arrival time (FCFS)
     sort(processes.begin(), processes.end(), [](const Process& a, const Process& b) {
         return a.arrival_time < b.arrival_time;
     });
 
-    // Calculate times
+    // Calculating times
     int current_time = 0;
     for (auto& p : processes) {
         if (current_time < p.arrival_time) {
@@ -48,7 +48,7 @@ int main() {
         current_time = p.completion_time;
     }
 
-    // Prepare output
+    // Preparing output
     json output;
     output["algorithm"] = "fcfs";
     output["processes"] = json::array();
