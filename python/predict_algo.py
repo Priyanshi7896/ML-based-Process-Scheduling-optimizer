@@ -10,7 +10,7 @@ class SchedulerPredictor:
         self.model = joblib.load(MODEL_PATH)
     
     def predict(self, input_data):
-        # Convert input to feature vector
+        # Converting input to feature vector
         features = np.array([
             input_data['num_processes'],
             input_data['stats']['avg_burst'],
@@ -26,7 +26,7 @@ if __name__ == "__main__":
     predictor = SchedulerPredictor()
     test_input = {
         "num_processes": 5,
-        "processes": [...],  # Your process list
+        "processes": [...],  
         "time_quantum": 4,
         "stats": {
             "avg_burst": 12.4,

@@ -11,7 +11,7 @@ struct Process {
     int pid;
     int arrival_time;
     int burst_time;
-    int priority; // Lower value = higher priority
+    int priority; 
     int waiting_time;
     int turnaround_time;
     int completion_time;

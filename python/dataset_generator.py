@@ -6,7 +6,7 @@ import statistics
 from pathlib import Path
 from scipy.stats import skew
 
-# Configuration
+# Configuring
 NUM_SAMPLES = 1000
 MIN_PROCESSES = 3
 MAX_PROCESSES = 20
@@ -18,7 +18,7 @@ MAX_QUANTUM = 20
 EDGE_CASE_RATIO = 0.05
 BURST_ARRIVAL_CHANCE = 0.3
 
-# Windows-compatible paths
+
 SCRIPT_DIR = Path(__file__).parent
 DATA_DIR = SCRIPT_DIR.parent / "data" / "raw"
 

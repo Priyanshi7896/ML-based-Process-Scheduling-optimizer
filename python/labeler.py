@@ -4,7 +4,7 @@ import subprocess
 from pathlib import Path
 import statistics
 
-# Path Configuration
+# configuring paths
 SCRIPT_DIR = Path(__file__).parent
 RAW_DATA_DIR = SCRIPT_DIR.parent / "data" / "raw"
 LABELED_DATA_DIR = SCRIPT_DIR.parent / "data" / "labeled"
@@ -16,7 +16,7 @@ ALGO_BINARIES = {
 }
 
 def run_algorithm(algo_name: str, input_data: dict) -> dict:
-    """Execute a scheduling algorithm binary and capture its output."""
+    """Executing a scheduling algorithm binary and capturing its output."""
     try:
         proc = subprocess.run(
             [str(ALGO_BINARIES[algo_name])],
@@ -31,13 +31,13 @@ def run_algorithm(algo_name: str, input_data: dict) -> dict:
         return None
 
 def evaluate_algorithm(results: dict) -> float:
-    """Calculate a combined performance score (lower is better)."""
+    """Calculating a combined performance score (lower -> better)."""
     avg_waiting = statistics.mean(p["waiting_time"] for p in results["processes"])
     avg_turnaround = statistics.mean(p["turnaround_time"] for p in results["processes"])
     return 0.7 * avg_waiting + 0.3 * avg_turnaround  # Weighted score
 
 def label_scenario(scenario_file: Path) -> dict:
-    """Label a single scenario with the best algorithm."""
+    """Labeling a single scenario with the best algorithm."""
     with open(scenario_file, 'r') as f:
         scenario = json.load(f)
     
@@ -68,7 +68,7 @@ def main():
         if len(labeled_data) % 100 == 0:
             print(f"Processed {len(labeled_data)} scenarios")
     
-    # Save all labeled data
+    # Saving all labeled data
     output_file = LABELED_DATA_DIR / "labeled_data.json"
     with open(output_file, 'w') as f:
         json.dump(labeled_data, f, indent=2)

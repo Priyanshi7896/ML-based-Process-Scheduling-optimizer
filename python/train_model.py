@@ -6,7 +6,7 @@ from sklearn.metrics import classification_report
 import joblib
 from pathlib import Path
 
-# Paths
+# Telling Paths
 SCRIPT_DIR = Path(__file__).parent
 LABELED_DATA = SCRIPT_DIR.parent / "data" / "labeled" / "labeled_data.json"
 MODEL_DIR = SCRIPT_DIR.parent / "data" / "model"
@@ -44,11 +44,11 @@ def train():
     model = RandomForestClassifier(n_estimators=100)
     model.fit(X_train, y_train)
     
-    # Evaluate
+    # Evaluating
     y_pred = model.predict(X_test)
     print(classification_report(y_test, y_pred))
     
-    # Save model
+    # Saving model
     joblib.dump(model, MODEL_DIR / "scheduler_model.pkl")
     print(f"Model saved to {MODEL_DIR}")
 

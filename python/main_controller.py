@@ -16,7 +16,7 @@ class SchedulerSystem:
         }
     
     def get_user_input(self):
-        """Simulate user input - replace with actual GUI/CLI later"""
+        """Simulating user input """
         num_processes = int(input("Number of processes: "))
         processes = []
         for i in range(num_processes):
@@ -29,7 +29,7 @@ class SchedulerSystem:
         time_quantum = int(input("\nTime quantum (for RR): "))
         return {
             "num_processes": num_processes,
-            "processes": processes,  # Note: Typo fixed to "processes" (consistent with other files)
+            "processes": processes,  
             "time_quantum": time_quantum,
             "stats": self.calculate_stats(processes)
         }
