@@ -1,12 +1,12 @@
 import json
 import pandas as pd
-from sklearn.model_selection import train_test_split
+from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import classification_report
 import joblib
 from pathlib import Path
 
-# Telling Paths
+# Paths
 SCRIPT_DIR = Path(__file__).parent
 LABELED_DATA = SCRIPT_DIR.parent / "data" / "labeled" / "labeled_data.json"
 MODEL_DIR = SCRIPT_DIR.parent / "data" / "model"
@@ -18,7 +18,6 @@ def load_data():
     return pd.DataFrame(data)
 
 def preprocess(df):
-    # Feature engineering
     features = []
     for _, row in df.iterrows():
         stats = row['stats']
@@ -32,25 +31,47 @@ def preprocess(df):
         })
     return pd.DataFrame(features)
 
-def train():
+def train_with_hyperparameter_tuning():
     df = load_data()
     processed = preprocess(df)
     
     X = processed.drop('best_algo', axis=1)
     y = processed['best_algo']
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     
-    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2)
+    # Define parameter grid
+    param_grid = {
+        'n_estimators': [50, 100, 200],
+        'max_depth': [None, 10, 20],
+        'min_samples_split': [2, 5],
+        'min_samples_leaf': [1, 2]
+    }
     
-    model = RandomForestClassifier(n_estimators=100)
-    model.fit(X_train, y_train)
+    # Initialize GridSearchCV
+    rf = RandomForestClassifier(random_state=42)
+    grid_search = GridSearchCV(
+        estimator=rf,
+        param_grid=param_grid,
+        cv=5,
+        n_jobs=-1,
+        verbose=2
+    )
     
-    # Evaluating
-    y_pred = model.predict(X_test)
+    print("Starting hyperparameter tuning...")
+    grid_search.fit(X_train, y_train)
+    
+    # Get best model
+    best_model = grid_search.best_estimator_
+    
+    # Evaluate
+    y_pred = best_model.predict(X_test)
+    print("\n=== Best Model Performance ===")
     print(classification_report(y_test, y_pred))
     
-    # Saving model
-    joblib.dump(model, MODEL_DIR / "scheduler_model.pkl")
-    print(f"Model saved to {MODEL_DIR}")
+    # Save best model
+    joblib.dump(best_model, MODEL_DIR / "tuned_scheduler_model.pkl")
+    print(f"\nBest parameters: {grid_search.best_params_}")
+    print(f"Model saved to {MODEL_DIR / 'tuned_scheduler_model.pkl'}")
 
 if __name__ == "__main__":
-    train()
+    train_with_hyperparameter_tuning()
